@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/*--reset------------------------------*/
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+li{
+	list-style-type: none;
+}
+
+h1{
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	padding: 0px;
+	margin: 0px;
+}
+
+p{
+	margin: 0px;
+}
+
+.hide{ 
+	display: none;
+}
+
+.hidden{ 
+	display: none;
+}
+
+.button{
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	border: 0px;
+	padding: 0px; 
+	cursor: pointer;
+}
+
+.black-button{
+	background: #525252; 
+	text-align: center;
+	color: white; 
+	border-radius: 5px;  
+}
+
+.blue-button{
+	background: #3498db; 
+	text-align: center;
+	color: white; 
+	border-radius: 5px;
+}
+
+/*--------------------------------*/
+
+/* 배경색 폰트색을 정해야 한다. */
+
+/* 기본은 흰색  */
+
+/*노멀*/
+.color-normal{
+	color : #F6F6F6;
+}
+/*하이라이트*/
+.color-hl{
+	color : #E3E3E3;
+}
+
+/* header color : #FFFFFF 투명도 0.8*/
+/* footer color : #F2F2F2 */
