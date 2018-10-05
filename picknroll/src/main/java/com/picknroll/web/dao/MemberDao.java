@@ -23,8 +23,8 @@ public interface MemberDao {
 
 	Member getByNickname(Map<String,String> params);
 
-	int updatePassword(String id, String oldPassword);
+	int updatePassword(Map<String,String> params);
 
-	String getByEmailGender(String email, String birthday);
+	String getByEmailBirthday(Map<String,String> params);
 
 }

@@ -65,15 +65,16 @@ public class MybatisMemberDao implements MemberDao {
 	}
 
 	@Override
-	public int updatePassword(String id, String newPassword) {
+	public int updatePassword(Map<String, String> params) {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		return memberDao.updatePassword(id, newPassword);
+		System.out.println(params.get("password"));
+		return memberDao.updatePassword(params);
 	}
 
 	@Override
-	public String getByEmailGender(String email, String birthday) {
+	public String getByEmailBirthday(Map<String, String> params) {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		return memberDao.getByEmailGender(email, birthday);
+		return memberDao.getByEmailBirthday(params);
 	}
 
 }

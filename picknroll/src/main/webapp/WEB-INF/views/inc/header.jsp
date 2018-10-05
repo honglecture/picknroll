@@ -40,8 +40,20 @@
 		<section class="profile">
 			<h1 class="hidden">프로필</h1>
 			<div>
-				<div class="photo" style="background: url('/resources/images/okinawa.jpg') no-repeat center; background-size: cover; "></div>
-				<div class="uid"><span>newlec</span></div>
+			
+				<!-- 프로필 사진 -->
+				<security:authorize access="!isAuthenticated()">
+					<div class="photo" style="background: url('/resources/images/anonymous.jpg') no-repeat center; background-size: cover; "></div>
+				</security:authorize>
+				<security:authorize access="isAuthenticated()">
+					<c:if test="${member.photo eq ''}">
+						<a href="/member/profile"><div class="photo" style="background: url('/resources/images/anonymous.jpg') no-repeat center; background-size: cover; "></div></a>
+					</c:if>
+					<c:if test="${member.photo ne ''}">
+						<a href="/member/profile"><div class="photo" style="background: url('/resources/users/${member.id}/${member.photo }') no-repeat center; background-size: cover; "></div></a>
+					</c:if>
+				</security:authorize>
+				
 				<!-- 인증한 놈 볼 수 없게 -->
 				<!-- https://docs.spring.io/spring-security/site/docs/current/reference/html/el-access.html -->
 				<div class="auth-status">

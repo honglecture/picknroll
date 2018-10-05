@@ -26,7 +26,7 @@
 		
 		<div class="member-form">
 			<h2 class="hidden">회원가입폼</h2>
-			<form method="post" enctype="multipart/form-data">  
+			<form method="post" enctype="multipart/form-data">
 				<ul>
 					<li>
 						<label>프로필사진</label>

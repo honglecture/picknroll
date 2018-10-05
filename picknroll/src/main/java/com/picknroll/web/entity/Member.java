@@ -7,7 +7,7 @@ public class Member {
 	private String id;
 	private String password;
 	private String email;
-	private Date birthday;
+	private String birthday;
 	private String gender;
 	private String photo;
 	private String nickname;
@@ -18,8 +18,8 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(String id, String password, String email, Date birthday, String gender, String photo, String nickname,
-			boolean restrictionStatus, Date regDate, Date editDate) {
+	public Member(String id, String password, String email, String birthday, String gender, String photo,
+			String nickname, boolean restrictionStatus, Date regDate, Date editDate) {
 		this.id = id;
 		this.password = password;
 		this.email = email;
@@ -56,11 +56,11 @@ public class Member {
 		this.email = email;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -88,7 +88,7 @@ public class Member {
 		this.nickname = nickname;
 	}
 
-	public boolean getRestrictionStatus() {
+	public boolean isRestrictionStatus() {
 		return restrictionStatus;
 	}
 
@@ -110,13 +110,6 @@ public class Member {
 
 	public void setEditDate(Date editDate) {
 		this.editDate = editDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", password=" + password + ", email=" + email + ", birthday=" + birthday
-				+ ", gender=" + gender + ", photo=" + photo + ", nickname=" + nickname + ", restrictionStatus="
-				+ restrictionStatus + ", regDate=" + regDate + ", editDate=" + editDate + "]";
 	}
 
 }

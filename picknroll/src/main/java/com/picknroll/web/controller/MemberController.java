@@ -133,6 +133,53 @@ public class MemberController {
 		response.addCookie(kc); // 응답 헤더에 추가해서 없어지도록 함
 		return "true";
 	}
+	
+	@GetMapping("is-pwd-email-authentication-ajax")
+	@ResponseBody
+	public String isPwdEmailAuthenticationAjax(String email, HttpServletResponse response) {
+		boolean duplicated = service.isEmailDuplicated(email);
+		if (!duplicated)
+			return "false"; // 이메일이 없으면
+
+		// ---이메일 보내기-----------------------------------------------------------
+		MimeMessage message = mailSender.createMimeMessage();
+		String certify = GenerateCertCharacter.excuteGenerate();
+		
+		// ---쿠키를 심는 작업-----------------------------------------------------------
+		Cookie cookie = new Cookie("pwdJoinId", certify); //식별값, 문자열만 담아야 한다.
+		cookie.setPath("/member/"); // 경로 member에서만 쓴다.
+		cookie.setMaxAge(60*3); // 3분
+		response.addCookie(cookie);
+		
+		try {
+			// 마임 = 멀티미디어 포함
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+			helper.setFrom("noreply@newlecture.com");
+			helper.setTo(email);
+			helper.setSubject("PicknRoll 계정찾기를 위한 인증메일");
+			// 이메일보낼때.. 파라미터 이름 줄여서 쓰자~
+			helper.setText("<h1>PicknRoll 계정찾기 인증 번호</h1><h2>" + certify + "</h2>", true);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		} // 쉽게 구현해주는 객체
+
+		mailSender.send(message);
+		return "true";
+	}
+	
+	@PostMapping("is-pwd-email-authentication-ajax")
+	@ResponseBody
+	public String isPwdEmailAuthenticationAjax(
+			@RequestBody Map<String, String> params,
+			@CookieValue(value="pwdJoinId", defaultValue="") String pwdJoinId,
+			HttpServletResponse response) {
+		if(!params.get("certify").equals(pwdJoinId)) 
+			return "false";
+		Cookie kc = new Cookie("pwdJoinId", null); // choiceCookieName(쿠키 이름)에 대한 값을 null로 지정
+		kc.setMaxAge(0); // 유효시간을 0으로 설정
+		response.addCookie(kc); // 응답 헤더에 추가해서 없어지도록 함
+		return "true";
+	}
 
 
 	@GetMapping("join-error")
@@ -143,57 +190,67 @@ public class MemberController {
 	// 세부사항 회원가입
 	@GetMapping("join-detail")
 	public String joinDetail(HttpSession session) {
-		/*String id = (String) session.getAttribute("id");*/
-/*		if(id==null || id.equals("")) {
+		String id = (String) session.getAttribute("id");
+		if(id==null || id.equals("")) {
 			session.removeAttribute("id");
 			return "redirect:join-error";
-		}*/
+		}
 		return "member.join-detail";
 	}
 	
 	// 세부사항 회원가입
 	@PostMapping("join-detail")
-	public String joinDetail(Member member,
+	public String joinDetail(Member member, HttpSession session,
 			@RequestParam("photo-file") MultipartFile photoFile,
 			HttpServletRequest request) {
-		
-		/*String id = (String) session.getAttribute("id");*/
-		String id = "flwj";
+		String id = (String) session.getAttribute("id");
 		if(id==null || id.equals("")) {
-			/*session.removeAttribute("id");*/
 			return "redirect:join-error";
 		}
 		member.setId(id);
 		try {
-			String uploadedFileName = service.insertProfilePicture(member.getId(), photoFile, request);
+			String originalFilename = photoFile.getOriginalFilename();
+			String uploadedFileName = "";
+			if(!originalFilename.equals("") && originalFilename != null) {
+				uploadedFileName = service.insertProfilePicture(id, photoFile, request);
+			}
 			member.setPhoto(uploadedFileName);
 			int count = service.updateMemberDetail(member);
-			/*session.removeAttribute("id");*/
+			session.removeAttribute("id");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "redirect:join-error";
 		}
 		return "redirect:../index";
 	}
-
-	@PostMapping("pwd-reset")
-	public String pwdReset(
-			@RequestParam("new-password") String newPassword,
-			String id) {
-		int count = service.updateMemberPassword(id, newPassword);
-		return "redirect:login";
+	
+	@GetMapping("pwd-reset")
+	public String pwdReset(HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
+		if(id==null || id.equals(""))
+			return "redirect:join-error";
+		session.setAttribute("memberId", id);
+		return "member.pwd-reset";
 	}
 
+	@PostMapping("pwd-reset")
+	public String pwdReset(String password, HttpSession session) {
+		String id = (String) session.getAttribute("memberId"); 
+		int count = service.updateMemberPassword(id, password);
+		session.removeAttribute("memberId");
+		return "redirect:login";
+	}
+	
 	@GetMapping("pwd-edit")
 	public String pwdEdit() {
 		return "member.pwd-edit";
 	}
+
 	
 	@PostMapping("pwd-edit")
-	public String pwdEdit(@RequestParam("new-password") String newPassword,		
-						  Principal principal){
+	public String pwdEdit(String password, Principal principal){
 		String id = principal.getName();
-		int count = service.updateMemberPassword(id, newPassword);
+		int count = service.updateMemberPassword(id, password);
 		return "redirect:profile";
 	}
 
@@ -203,10 +260,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("find-id")
-	public String findId(String email, String birthday, Model model) {
-		String id = service.getMemberId(email, birthday);
-		model.addAttribute("id", id);
-		return "member.pwd-reset";
+	@ResponseBody
+	public String findId(@RequestBody Map<String, String> params, HttpSession session) {
+		String id = service.getMemberId(params.get("birthday"), params.get("email"));
+		if(id==null || id.equals(""))
+			return "false";
+		session.setAttribute("memberId", id);
+		return "true";
 	}
 
 	@GetMapping("detail-edit")
@@ -227,6 +287,7 @@ public class MemberController {
 		try {
 			if(!photoFile.getOriginalFilename().equals("")) {
 				String uploadedFileName = service.updateProfilePicture(id, photoFile, request);
+				System.out.println(uploadedFileName);
 				member.setPhoto(uploadedFileName);
 			}
 			int count = service.updateMemberDetail(member);
@@ -239,8 +300,6 @@ public class MemberController {
 
 	@GetMapping("profile")
 	public String profile(Model model, Principal principal) {
-		// session에 있는 id를 
-		// id를 얻어야 함
 		String id = principal.getName();
 		Member member = service.getMember(id);
 		model.addAttribute("member", member);

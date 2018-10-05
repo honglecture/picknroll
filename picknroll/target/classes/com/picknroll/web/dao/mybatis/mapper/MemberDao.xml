@@ -17,7 +17,6 @@
 				,photo = #{photo}
 			</if>
 		where id = #{id}
-		<!-- 포맷팅 해야 함 -->
 	</update>
 
 	<update id="update" parameterType="com.picknroll.web.entity.Member">
@@ -37,11 +36,11 @@
 		select * from Member where id=#{id}
 	</select>
 	
-	<select id="getByEmail" resultType="com.picknroll.web.entity.Member">
+	<select id="getByEmail" parameterType="java.util.Map" resultType="com.picknroll.web.entity.Member">
 		select * from Member where email=#{email}
 	</select>
 	
-	<select id="getByNickname" resultType="com.picknroll.web.entity.Member">
+	<select id="getByNickname" parameterType="java.util.Map" resultType="com.picknroll.web.entity.Member">
 		select * from Member where nickname=#{nickname}
 	</select>
 	
@@ -49,21 +48,21 @@
 		select * from Member
 	</select>
 	
-	<update id="updatePassword">
+	<update id="updatePassword"  parameterType="java.util.Map">
 		update Member set
-			password = #{param2}
+			password = #{password}
 		where 
-			id = #{param1}
+			id = #{id}
 	</update>
 	
-	<select id="getByEmailGender" resultType="String">
+	<select id="getByEmailBirthday" parameterType="java.util.Map" resultType="String">
 		select
-			id 
+			id
 		from 
 			Member
 		where
-			email = #{param1} and
-		    birthday = #{param2}
+			email = #{email} and
+		    birthday = STR_TO_DATE(#{birthday}, '%Y-%m-%d');
 	</select>
 
 </mapper>

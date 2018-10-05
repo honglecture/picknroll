@@ -9,15 +9,7 @@ window.addEventListener("load", function(){
 
 	// 멤버 폼
 	var memberForm = memberSection.querySelector(".member-form");
-
-	// id 중복 검사
-	var idDuplicateButton = memberForm.querySelector(".id-duplicate-button");
-	var idInput = memberForm.querySelector("input[name='id']");
-
-	// 닉네임 중복 검사
-	var nicknameDuplicateButton = memberForm.querySelector(".nickname-duplicate-button");
-	var nicknameInput = memberForm.querySelector("input[name='nickname']");
-
+	
 	// 이메일 검사 및 인증 메일 보내기
 	var emailCheckButton = memberForm.querySelector(".email-check-button");
 	var emailInput = memberForm.querySelector("input[name='email']");
@@ -27,60 +19,24 @@ window.addEventListener("load", function(){
 	var emailAuthLi = memberForm.querySelector(".email-auth-li");
 	var certifyInput = memberForm.querySelector("input[name='certify']");
 	
+	// 생일
+	var birthdayInput = memberForm.querySelector("input[name='birthday']");
+	
 	// 전송
 	var submitButton = memberForm.querySelector("input[type='submit']");
 	var form = memberForm.querySelector("form");
 	
-	// 상태값
-	var idCheckStatus = false;
-	var nicknameCheckStatus = false;
 	var emailCheckStatus = false;
-
-	idDuplicateButton.onclick = function(){
-		var id = idInput.value;
-		if(id=="") return;
-		var params = {id : id};
-		sendGetRequest("is-id-duplicated-ajax", params, true, function(result){
-			if(result){
-				alert("아이디가 중복되었습니다.");
-				idCheckStatus = false;
-				return;
-			}   
-			alert("사용하셔도 좋습니다");
-			idCheckStatus = true;
-
-			// border 색깔이 바뀌어야 함 파란색으로
-			
-		});		
-	};
-
-	nicknameDuplicateButton.onclick = function(){
-		var nickname = nicknameInput.value;
-		if(nickname=="") return;
-		var params = {nickname : nickname};
-		sendGetRequest("is-nickname-duplicated-ajax", params, true, function(result){
-			if(result){
-				alert("닉네임이 중복되었습니다.");
-				nicknameCheckStatus = false;
-				return;
-			} 
-			alert("사용하셔도 좋습니다");
-			nicknameCheckStatus = true;
-			// border 색깔이 바뀌어야 함 파란색으로
-		});		
-	};
-
+	
 	emailCheckButton.onclick = function(){
 		var email = emailInput.value;
 		if(email=="") return;
 		var params = {email : email};
-		
-		sendGetRequest("is-email-authentication-ajax", params, true, function(result){
-			if(result){
-				alert("이메일 중복"); 
+		sendGetRequest("is-pwd-email-authentication-ajax", params, true, function(result){
+			if(!result){
+				alert("입력한 이메일이 없습니다."); 
 				return;
 			}
-				
 			alert("인증 메일을 보냈습니다.");
 			emailAuthLi.classList.remove("hidden"); // 보이게 한다.
 			startTimer();
@@ -91,7 +47,7 @@ window.addEventListener("load", function(){
 		var certify = certifyInput.value;
 		if(certify=="") return;
 		var params = {certify : certify};
-		sendPostRequest("is-email-authentication-ajax", params, true, function(result){
+		sendPostRequest("is-pwd-email-authentication-ajax", params, true, function(result){
 			if(!result){
 				alert("인증 번호가 다릅니다."); return;
 				emailCheckStatus = false;
@@ -107,29 +63,24 @@ window.addEventListener("load", function(){
 	
 	
 	submitButton.onclick = function(e){
-/*		var idCheckStatus = false;
-		var nicknameCheckStatus = false;
-		var emailCheckStatus = false;*/
 		e.preventDefault();
-		if(!idCheckStatus){
-			alert("아이디 중복검사 해주세요.");
-			return;
-		}
-		
-		if(!nicknameCheckStatus){
-			alert("닉네임 중복검사 해주세요.");
-			return;
-		}
-		
+		var email = emailInput.value;
+		var birthday = birthdayInput.value;
 		if(!emailCheckStatus){
 			alert("이메일 인증해주세요");
 			return;
 		}
-		form.submit();
+		var params = {email : email, birthday : birthday};
+		sendPostRequest("find-id", params, true, function(result){
+			if(!result){
+				alert("생년월일이 다릅니다.");
+				return;
+			}
+			alert("인증되었습니다.");
+			location.href="pwd-reset";
+		});
 	};
-	
 });
-
 
 function startTimer() {
 	timerID = setInterval(decrementTime, 1000);

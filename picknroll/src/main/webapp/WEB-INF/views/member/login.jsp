@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="/resources/js/member/login.js"></script>
 <main id="main">
 	<section>
 		<h1>로그인</h1>
@@ -21,7 +22,7 @@
 				</ul>
 			</div>
 			<h2 class="hidden">로그인폼</h2>
-			<form method="post" id="member-form">
+			<form method="post" class="member-form">
 				<ul>
 					<li><label for="username"><img
 							src="/resources/images/icon-member.png" /></label> <input type="text"
@@ -35,7 +36,7 @@
 						for="auto-login">자동로그인</label></li>
 				</ul>
 				<div>
-					<input id="" class="" type="submit" value="로그인" />
+					<input type="submit" value="로그인" />
 				</div>
 			</form>
 		</div>

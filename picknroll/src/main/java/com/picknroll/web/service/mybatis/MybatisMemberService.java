@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -102,10 +101,10 @@ public class MybatisMemberService implements MemberService {
 	}
 
 	@Override
-	public int updateMemberPassword(String id, String newPassword) {
+	public int updateMemberPassword(String id, String password) {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		newPassword = encoder.encode(newPassword);
-		int count = memberDao.updatePassword(id, newPassword);
+		password = encoder.encode(password);
+		int count = memberDao.updatePassword(ParameterUtil.mapping("id", id, "password", password));
 		return count;
 	}
 
@@ -126,11 +125,10 @@ public class MybatisMemberService implements MemberService {
 		
 		// dir에 있는 파일을 다 지워야 한다.
 		File[] deleteFolderList = dir.listFiles();
-		for (int i = 0; i < deleteFolderList.length;)
+		for (int i = 0; i < deleteFolderList.length; i++) {
 			deleteFolderList[i].delete();
-		
-		
-		
+		}
+			
 		InputStream fis = photoFile.getInputStream();
 		FileOutputStream fos = new FileOutputStream(filePath);
 		byte[] buf = new byte[1024];
@@ -144,8 +142,8 @@ public class MybatisMemberService implements MemberService {
 	}
 
 	@Override
-	public String getMemberId(String email, String birthday) {
-		String id = memberDao.getByEmailGender(email, birthday);
+	public String getMemberId(String birthday, String email) {
+		String id = memberDao.getByEmailBirthday(ParameterUtil.mapping("email", email, "birthday", birthday));
 		return id;
 	}
 

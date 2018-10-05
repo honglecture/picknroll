@@ -20,7 +20,7 @@ public interface MemberService {
 
 	int updateMemberDetail(Member member);
 
-	int updateMemberPassword(String id, String newPassword);
+	int updateMemberPassword(String id, String password);
 
 	String insertProfilePicture(String id, MultipartFile photoFile, HttpServletRequest request) throws IOException;
 

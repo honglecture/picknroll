@@ -52,7 +52,7 @@
 					<li class="email-auth-li hidden">
 						<label for="">이메일 인증</label>
 						<input type="text" name="certify" autocomplete=off />
-						<input type="button" class="email-auth-button" value="인증">
+						<input type="button" class="email-auth-button" value="확인">
 						<span class="auth-time"></span>
 					</li>
 	 			</ul>    
