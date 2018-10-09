@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/*-----------class-----------------------------*/
+
+.app-image{
+	width : 100px;  
+	height : 100px;
+	border-radius: 30px; 
+	background-color: black;  
+	display: inline-block;       
+}
+
+.app-title{
+	display: block;
+}
+  
+/*--main--------------------------------------*/ 
+
+#main{
+	
+} 
+
+/*--menu-list--------------------------------------*/ 
+	
+#menu-list{
+	margin-top : 30px;
+}
+
+	#menu-list > ul > li{
+		display: inline-block;
+		text-align: center;
+		margin : 20px;
+	}

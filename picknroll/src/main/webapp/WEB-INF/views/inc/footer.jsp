@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 <footer id="footer">
 	<section>
-		<h1>나는 푸터</h1>
+		<p>Copyright ⓒ 2018 HONG All Rights Reserved</p>
 	</section>
 </footer>

@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="/resources/js/member/pwd-edit.js"></script>
-
-<style>
-	.hidden{
-		display: none;
-	}
-</style>
-
 <main id="main"> 
 	<section id="member-section">
 		<h1 class="hidden">계정찾기</h1>

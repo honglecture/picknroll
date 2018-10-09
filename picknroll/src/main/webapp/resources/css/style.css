@@ -1,81 +1,130 @@
 @charset "UTF-8";
-/*--reset------------------------------*/
+/*--------------- 공통 css ---------------*/
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 
-body{
-	margin: 0px;
+/*--------------- 리셋   ------------------*/
+body {
 	padding: 0px;
+	margin: 0px;
 }
 
-ul{
+h1, h2, h3, h4, h5, h6 {
 	margin: 0px;
-	padding: 0px;
+}
+
+p {
+	margin: 0px;
+}
+
+ul{ 
+	padding : 0px; 
+	margin : 0px;
 }
 
 li{
-	list-style-type: none;
+	list-style-type: none; 
 }
 
-h1{
-	margin: 0px;
-	padding: 0px;
-}
-
-a {
+a{
+	color: #000000;
 	text-decoration: none;
-	color: black;
-	padding: 0px;
-	margin: 0px;
+} 
+ 
+
+
+*{
+	box-sizing: border-box;
 }
 
-p{
-	margin: 0px;
+
+/*--text-------------------------------------*/
+body {
+	font-family: 'Jeju Gothic', sans-serif;
+} 
+
+.text-sm{
+	font-size: 0.8em;
 }
 
-.hide{ 
+/*------------------공통 class---------------------*/
+.hidden{
 	display: none;
 }
 
-.hidden{ 
-	display: none;
+.main-container{  
+	margin-top : 10px;
+	margin-left : auto;
+	margin-right: auto;
+	padding : 0% 5%;
+}   
+
+.main-title{ 
+	padding-top: 10px; 
 }
+	.main-title > span{ 
+		font-size: 1.5em; 
+	}
+
+/*----------input-box------------*/
+.text-input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;  
+    border: 1px solid #a9a9a9;
+}
+
+.input-explanation{
+	font-size: 0.8em;		
+}
+
+.input-success{
+	border: 1px solid #000;
+}
+
+/*---------button---------------*/
 
 .button{
-	width: 24px;
-	height: 24px;
-	overflow: hidden;
-	border: 0px;
-	padding: 0px; 
-	cursor: pointer;
+	width: 100%;
+	box-shadow: inset 0px 0px 0px 0px #ffffff;
+    background-blend-mode: lighten;
+    background-color: rgba(0,0,0,0);
+    border-radius: 0px;
+    padding: 8px;
+    border-radius: 0px;
+    background: #FFF;
+    border: 1px solid #000;
+    color: #000;
+    box-sizing: border-box;
+    margin: 1;
+    cursor: pointer;
+    text-align: center;
 }
 
-.black-button{
-	background: #525252; 
-	text-align: center;
-	color: white; 
-	border-radius: 5px;  
+.button:hover{
+    background-color: #000;
+    color: #fff;
 }
 
-.blue-button{
-	background: #3498db; 
-	text-align: center;
-	color: white; 
-	border-radius: 5px;
+
+/*------------------공통 header 부분-----------------*/
+#header{
+	
 }
 
-/*--------------------------------*/
+	#header > h1{
+		text-align: center;
+		margin-top : 10px;
+	}
+	
+/*------------------공통 footer 부분-----------------*/
+#footer {
 
-/* 배경색 폰트색을 정해야 한다. */
-
-/* 기본은 흰색  */
-
-/*노멀*/
-.color-normal{
-	color : #F6F6F6;
 }
-/*하이라이트*/
-.color-hl{
-	color : #E3E3E3;
-}
-
-/* header color : #FFFFFF 투명도 0.8*/
-/* footer color : #F2F2F2 */
+ 
+	#footer > section{ 
+		text-align: center;
+		margin-top: 10%;
+	    margin-bottom: 5%;
+	    color: #ccc; 
+	    font-size: small; 
+	}

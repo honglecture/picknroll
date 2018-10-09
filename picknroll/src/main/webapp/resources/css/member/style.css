@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+/*-------공통 class----------------------------*/
+
+.input-check-li{
+	position: relative;
+}
+
+.input-checker{
+	position: absolute;
+	right: 0px;
+	top : 0px;
+	font-size : 0.8em;
+	color : #fff;
+	background-color : #000;
+	cursor: pointer;
+	padding: 2px;
+}
+
+.check-explanation{
+	position: absolute;
+	right: 10px;
+	top : 40px;
+	font-size : 0.8em;
+}
+
+
+/*-------member-section----------------------*/
+#member-section{
+	margin-top : 30px;		
+}
+
+	.member-menu{
+		
+	}
+
+		.member-menu > ul > li{ 
+			display: inline-block;
+		} 
+     
+    .member-form{
+    
+    }
+    
+	    .member-form > ul >li{
+	    	width: 100%;
+	    }
+	    
+	    .member-form  .submit-button{
+    		margin-top : 40px;
+    	}

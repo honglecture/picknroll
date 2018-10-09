@@ -1,8 +1,8 @@
 function sendPostRequest(url, params, asyn, callback){
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 	request.onload = function(e){ 
 		if (request.status === 200) {
-			var result = JSON.parse(request.responseText);
+			let result = JSON.parse(request.responseText);
 			callback(result);
 		} else{  
 			alert('request에 뭔가 문제가 있어요.');
@@ -14,10 +14,10 @@ function sendPostRequest(url, params, asyn, callback){
 }
 
 function sendGetRequest(url, params, asyn, callback){
-	var request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 	request.onload = function(e){ 
 		if (request.status === 200) {
-			var result = JSON.parse(request.responseText);
+			let result = JSON.parse(request.responseText);
 			callback(result);
 		} else{  
 			alert('request에 뭔가 문제가 있어요.');
@@ -46,14 +46,14 @@ function nullToValue(str, value){
 }
 
 function createQuerystring(params){
-	var qs = "";
-	var size = 0;
-	var temp = 0;
-	for (var key in params){
+	let qs = "";
+	let size = 0;
+	let temp = 0;
+	for (let key in params){
 		if (params.hasOwnProperty(key)) 
 			size++;
 	}
-	for (var key in params) {
+	for (let key in params) {
 		temp++;
 		qs += key + "=" + params[key];
 		if(temp!=size)
