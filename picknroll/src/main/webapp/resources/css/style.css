@@ -89,10 +89,28 @@ body {
     background-blend-mode: lighten;
     background-color: rgba(0,0,0,0);
     border-radius: 0px;
+    padding: 12px 20px;
+    margin: 8px 0;  
+    border-radius: 0px;
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    box-sizing: border-box;
+    margin: 1;
+    cursor: pointer;
+    text-align: center;
+}
+
+.select{
+	width: 100%;
+	box-shadow: inset 0px 0px 0px 0px #ffffff;
+    background-blend-mode: lighten;
+    background-color: rgba(0,0,0,0);
+    border-radius: 0px;
     padding: 8px;
     border-radius: 0px;
     background: #FFF;
-    border: 1px solid #000;
+    border: 1px solid #a9a9a9;
     color: #000;
     box-sizing: border-box;
     margin: 1;

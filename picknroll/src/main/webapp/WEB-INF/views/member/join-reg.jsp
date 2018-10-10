@@ -3,7 +3,6 @@
 <script type="text/javascript" src="/resources/js/member/join-reg.js"></script>
 <link href="/resources/css/member/style.css" type="text/css" rel="stylesheet">
 <main id="main" class="main-container">
-
 	<section id="main-title" class="main-title">
 		<h1 class="hidden">이름</h1>
 		<span>> 회원가입</span>

@@ -24,6 +24,18 @@
 	font-size : 0.8em;
 }
 
+.inline-center{
+	text-align: center;
+}
+
+.inline-left{
+	text-align: left;
+}
+
+.photo{
+	width:96px;
+	height:96px;
+}
 
 /*-------member-section----------------------*/
 #member-section{

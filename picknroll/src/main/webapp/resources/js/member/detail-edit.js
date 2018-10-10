@@ -1,26 +1,30 @@
 window.addEventListener("load", function(){
 	
-	var memberSection = document.querySelector("#member-section");
+	let memberSection = document.querySelector("#member-section");
 	
 	// 멤버 프로필
-	var memberProfile = memberSection.querySelector(".member-profile");
-	var photo = memberProfile.querySelector(".photo");
+	let memberProfile = memberSection.querySelector(".member-profile");
+	let photo = memberProfile.querySelector(".photo");
 	
 	// 멤버 폼
-	var memberForm = memberSection.querySelector(".member-form");
+	let memberForm = memberSection.querySelector(".member-form");
 
     //사진선택
-    var photoButton = memberForm.querySelector(".photo-button");
-	var fileButton = memberForm.querySelector("input[type='file']");
+    let photoButton = memberForm.querySelector(".photo-button");
+	let fileButton = memberForm.querySelector("input[type='file']");
+
+	//date
+	let birthdayInput = memberForm.querySelector("input[name='birthday']");
+	let genderInput = memberForm.querySelector("select[name='gender']");
 
 	// 전송 버튼
-	var submitButton = memberForm.querySelector("input[type='submit']");
+	let submitButton = memberForm.querySelector("input[type='submit']");
 	 
 	// 상태값  
 
 	fileButton.onchange = function(e){
 
-		var file = fileButton.files[0];
+		let file = fileButton.files[0];
 		
 		// 선택한 파일에 대한 조건 제어
 		
@@ -38,7 +42,7 @@ window.addEventListener("load", function(){
 		
 		// 브라우저 메모리에 파일이 올라감
 		// html5 기능 로컬 이미지 불러들이기
-		var reader = new FileReader();
+		let reader = new FileReader();
 		reader.onload = function(evt){ 
 			photo.src = evt.target.result; // 여기서 file 들어간다.
 		};
@@ -49,12 +53,21 @@ window.addEventListener("load", function(){
 	};
 
 	photoButton.onclick = function(e){
-		var event = new MouseEvent("click",{
+		let event = new MouseEvent("click",{
 			"view" : window,
 			"bubbles" : true,
 			"cancelable" : true
 		});
 		fileButton.dispatchEvent(event);
+	}
+	
+	submitButton.onclick = function(e){
+		let birthday = birthdayInput.value;
+		let gender = genderInput.value;
+		if(birthday=="" || gender ==""){
+			e.preventDefault();
+			return;
+		}
 	}
 
 });

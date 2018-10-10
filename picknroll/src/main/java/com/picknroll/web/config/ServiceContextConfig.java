@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @ComponentScan(basePackages = { "com.picknroll.web.dao.mybatis", "com.picknroll.web.service.mybatis" })
 @Configuration
@@ -36,16 +34,16 @@ public class ServiceContextConfig {
 		 */
 
 		/* mysql */
-		  basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+/*		  basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		  basicDataSource.setUrl("jdbc:mysql://localhost/picknrolldb?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC"); 
-		  basicDataSource.setUsername("hong"); basicDataSource.setPassword("1234");
+		  basicDataSource.setUsername("hong"); basicDataSource.setPassword("1234");*/
 		 
 
 		/* mariadb */
-/*		basicDataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+		basicDataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 		basicDataSource.setUrl("jdbc:mariadb://picknroll.gonetis.com:3306/picknrolldb?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8");
 		basicDataSource.setUsername("pi");
-		basicDataSource.setPassword("magnetic0611");*/
+		basicDataSource.setPassword("magnetic0611");
 		
 		// 커넥션풀 설정
 		basicDataSource.setRemoveAbandoned(true);
