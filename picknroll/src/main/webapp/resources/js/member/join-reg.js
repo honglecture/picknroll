@@ -3,7 +3,7 @@ let timerID; // 타이머를 핸들링하기 위한 전역 변수
 let time = 180; // 타이머 시작시의 시간
 
 let idPattern = /^[A-Za-z0-9]{4,20}$/;
-let pwdPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\W\d]{8,20}$/;
+let pwdPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\W\d]{6,20}$/;
 				
 
 let nicknamePattern = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,12}$/;

@@ -4,8 +4,7 @@
 <script src="/resources/js/member/pwd-edit.js"></script>
 <main id="main" class="main-container">
 	<section id="main-title" class="main-title">
-		<h1 class="hidden">이름</h1>
-		<span>> 비밀번호 변경</span>
+		<h1>> 비밀번호 변경</h1>
 		<div class="page-explanation">
 			<h2 class="hidden">부가설명</h2> 
 			<p>비밀번호는 주기적으로 변경해주세요.</p> 

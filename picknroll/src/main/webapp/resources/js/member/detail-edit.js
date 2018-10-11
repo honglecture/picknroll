@@ -21,7 +21,6 @@ window.addEventListener("load", function(){
 	let submitButton = memberForm.querySelector("input[type='submit']");
 	 
 	// 상태값  
-
 	fileButton.onchange = function(e){
 
 		let file = fileButton.files[0];

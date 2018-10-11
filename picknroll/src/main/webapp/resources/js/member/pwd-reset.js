@@ -1,4 +1,4 @@
-let pwdPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\W\d]{8,20}$/;
+let pwdPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\W\d]{6,20}$/;
 
 let pwdPatternFlag = false;
 let pwdCheckFlag = false;

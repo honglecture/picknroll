@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/*-----게시판 공통 css--------------------------------------------------------------*/
+/*----class--------------------------------------------------------------*/
+
+
+/*-------------------- #search-section -----------------------*/
+#search-section{
+	
+}
+
+	#search-section .search-form{
+		display: flex; 
+	}
+	
+	#search-section .search-form select{
+		width : 25%;
+		padding : 0px;
+	}
+	
+	#search-section .search-form input[type="submit"]{
+		width : 20%;
+	}
+	
+	#search-section .search-form input[type="text"]{
+		flex-grow: 1;
+		border-left: 0px;
+		border-right : 0px;
+	}
+	
+/*-------------------- #search-section -----------------------*/
+#article-list{
+	margin : 10px 0px;
+}
+
+	#article-list .article{
+		border: 1px solid #a9a9a9;
+		padding : 10px;
+		word-wrap : break-word;
+		margin-top : 5px;
+	}
+	
+	#article-list .article-info{
+		margin-top: 5px; 
+	}
+	
+	#article-list .article-info ul{
+		display: flex;
+		font-size: 0.7em; 
+	}
+	
+	#article-list .article-info ul li{
+		padding-right: 5px;
+		
+	}
+

@@ -27,7 +27,7 @@ public class HomeController {
 		return "home.index";
 	}
 	
-	@GetMapping("introduction")
+	@GetMapping("/intro/introduction")
 	public String introduction() {
 		return "home.intro.introduction";
 	}

@@ -4,8 +4,7 @@
 <link href="/resources/css/member/style.css" type="text/css" rel="stylesheet">
 <main id="main" class="main-container">
 	<section id="main-title" class="main-title">
-		<h1 class="hidden">이름</h1>
-		<span>> 회원가입</span>
+		<h1>> 회원가입</h1>
 		<div class="page-explanation">
 			<h2 class="hidden">부가설명</h2> 
 			<p>환영합니다. PicknRoll입니다. 회원가입을 하기 위해선 아래 항목을 입력해주세요.</p> 

@@ -1,0 +1,6 @@
+DROP VIEW NoticeMemberView;
+
+create view NoticeMemberView as
+select n.id, n.title, n.content, n.hit, n.regDate, n.editDate, n.writerId, m.nickname 
+from Notice n left outer join Member m
+on n.writerId = m.id;

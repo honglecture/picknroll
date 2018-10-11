@@ -4,12 +4,9 @@
 <script type="text/javascript" src="/resources/js/member/login.js"></script>
 <link href="/resources/css/member/login.css" type="text/css" rel="stylesheet">
 <main id="main" class="main-container">
-	
 	<section id="main-title" class="main-title">
-		<h1 class="hidden">이름</h1>
-		<span>> 로그인</span>
+		<h1>> 로그인</h1>
 	</section>
-
 	<section id="member-section">
 		<h1 class="hidden">로그인 폼</h1>
 		<div class="member-menu">

@@ -41,7 +41,7 @@
 			</security:authorize>
 			
 			<li>
-				<a href="/introduction">
+				<a href="/intro/introduction">
 					<div class="app-image" style="background: url('/resources/images/intro.png') no-repeat center black; background-size: cover;"></div>
 					<span class="app-title">사이트소개</span>
 				</a>

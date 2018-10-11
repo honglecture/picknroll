@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.picknroll.web.dao.NoticeDao">
+
+	<insert id="insert" parameterType="com.picknroll.web.entity.Notice">
+		insert into Notice(title, content, writerId)
+		values(#{title}, #{content}, #{writerId})
+	</insert>
+
+	<select id="getList" parameterType="java.util.Map" resultType="com.picknroll.web.entity.Notice">
+		select * 
+		from NoticeMemberView
+		where ${f} like '%${q}%'
+		order by ${s} desc
+		limit ${p} , 10
+	</select>
+	
+	<select id="get" resultType="com.picknroll.web.entity.Notice">
+		select * 
+		from Notice
+		where 
+		id = #{id}	
+	</select>
+	
+	<update id="update">
+		update Notice
+		set  title = #{title}
+			,content = #{content}
+			, editDate = CURRENT_TIMESTAMP
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from Notice
+		where id = #{id}
+	</delete>
+	
+</mapper>

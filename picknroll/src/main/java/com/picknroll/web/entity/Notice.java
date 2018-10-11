@@ -11,11 +11,15 @@ public class Notice {
 	private Date regDate;
 	private Date editDate;
 	private String writerId;
+	
+	// 추가함
+	private String nickname;
 
 	public Notice() {
 	}
-
-	public Notice(long id, String title, String content, long hit, Date regDate, Date editDate, String writerId) {
+	
+	public Notice(long id, String title, String content, long hit, Date regDate, Date editDate, String writerId,
+			String nickname) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
@@ -23,6 +27,15 @@ public class Notice {
 		this.regDate = regDate;
 		this.editDate = editDate;
 		this.writerId = writerId;
+		this.nickname = nickname;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public long getId() {

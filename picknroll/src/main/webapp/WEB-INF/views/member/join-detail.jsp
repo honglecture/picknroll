@@ -4,8 +4,7 @@
 <link href="/resources/css/member/style.css" type="text/css" rel="stylesheet">
 <main id="main" class="main-container">
 	<section id="main-title" class="main-title">
-		<h1 class="hidden">이름</h1>
-		<span>> 부가정보</span>
+		<h1>> 부가정보</h1>
 		<div class="page-explanation">
 			<h2 class="hidden">부가설명</h2> 
 			<p>회원가입을 축하드립니다. 서비스에 필요한 부가정보를 입력해주세요.</p> 

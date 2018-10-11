@@ -59,11 +59,8 @@ body {
 }   
 
 .main-title{ 
-	padding-top: 10px; 
+	margin: 10px 0px; 
 }
-	.main-title > span{ 
-		font-size: 1.5em; 
-	}
 
 /*----------input-box------------*/
 .text-input{
@@ -82,7 +79,6 @@ body {
 }
 
 /*---------button---------------*/
-
 .button{
 	width: 100%;
 	box-shadow: inset 0px 0px 0px 0px #ffffff;

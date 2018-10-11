@@ -4,8 +4,7 @@
 <link href="/resources/css/member/style.css" type="text/css" rel="stylesheet">
 <main id="main" class="main-container">
 	<section id="main-title" class="main-title">
-		<h1 class="hidden">이름</h1>
-		<span>> 프로필</span>
+		<h1>> 프로필</h1>
 	</section>
 	<section id="member-section">
 		<h1 class="hidden">회원가입 폼</h1>
