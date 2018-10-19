@@ -3,6 +3,7 @@ package com.picknroll.web.entity;
 import java.util.Date;
 
 public class App {
+	
 	private long id;
 	private String title;
 	private String url;
@@ -14,12 +15,18 @@ public class App {
 	private long appCategoryId;
 	private Date regDate;
 	private Date editDate;
+	
+	// 카테고리 name
+	private String categoryName;
+	private String memberId;
+	private String appId;
 
 	public App() {
 	}
 
 	public App(long id, String title, String url, String icon, boolean status, boolean isLogin, String description,
-			String target, long appCategoryId, Date regDate, Date editDate) {
+			String target, long appCategoryId, Date regDate, Date editDate, String categoryName, String memberId,
+			String appId) {
 		this.id = id;
 		this.title = title;
 		this.url = url;
@@ -31,7 +38,13 @@ public class App {
 		this.appCategoryId = appCategoryId;
 		this.regDate = regDate;
 		this.editDate = editDate;
+		this.categoryName = categoryName;
+		this.memberId = memberId;
+		this.appId = appId;
 	}
+
+
+
 
 	public long getId() {
 		return id;
@@ -77,7 +90,7 @@ public class App {
 		return isLogin;
 	}
 
-	public void setLogin(boolean isLogin) {
+	public void setIsLogin(boolean isLogin) {
 		this.isLogin = isLogin;
 	}
 
@@ -121,11 +134,28 @@ public class App {
 		this.editDate = editDate;
 	}
 
-	@Override
-	public String toString() {
-		return "App [id=" + id + ", title=" + title + ", url=" + url + ", icon=" + icon + ", status=" + status
-				+ ", isLogin=" + isLogin + ", description=" + description + ", target=" + target + ", appCategoryId="
-				+ appCategoryId + ", regDate=" + regDate + ", editDate=" + editDate + "]";
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getAppId() {
+		return appId;
+	}
+
+	public void setAppId(String appId) {
+		this.appId = appId;
 	}
 
 }

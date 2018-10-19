@@ -13,8 +13,10 @@ public interface NoticeDao {
 
 	int update(Notice notice);
 
-	int delete(String id);
-	
 	List<Notice> getList(Map<String, String> param);
+
+	int getTotalCount(Map<String, String> map);
+
+	int delete(Map<String, String> params);
 
 }

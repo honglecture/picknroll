@@ -5,23 +5,29 @@
 <mapper namespace="com.picknroll.web.dao.NoticeDao">
 
 	<insert id="insert" parameterType="com.picknroll.web.entity.Notice">
-		insert into Notice(title, content, writerId)
-		values(#{title}, #{content}, #{writerId})
+		insert into Notice(title, content, writerId, hit)
+		values(#{title}, #{content}, #{writerId}, 0)
 	</insert>
 
 	<select id="getList" parameterType="java.util.Map" resultType="com.picknroll.web.entity.Notice">
 		select * 
-		from NoticeMemberView
+		from NoticeView
 		where ${f} like '%${q}%'
-		order by ${s} desc
+		order by id desc
 		limit ${p} , 10
 	</select>
 	
 	<select id="get" resultType="com.picknroll.web.entity.Notice">
 		select * 
-		from Notice
+		from NoticeView
 		where 
 		id = #{id}	
+	</select>
+	
+	<select id="getTotalCount"  parameterType="java.util.Map"  resultType="Integer">
+		select count(*) 
+		from NoticeView
+		where ${f} like '%${q}%'
 	</select>
 	
 	<update id="update">
@@ -32,7 +38,7 @@
 		where id = #{id}
 	</update>
 	
-	<delete id="delete">
+	<delete id="delete"  parameterType="java.util.Map">
 		delete from Notice
 		where id = #{id}
 	</delete>

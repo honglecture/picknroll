@@ -53,9 +53,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="/notice/list">
+				<a href="/market/list">
 					<div class="app-image" style="background: url('/resources/images/store.png') no-repeat center black; background-size: cover;"></div>
-					<span class="app-title">스토어</span>
+					<span class="app-title">마켓</span>
 				</a>
 			</li>
 		</ul>

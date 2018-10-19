@@ -14,12 +14,14 @@ public class Notice {
 	
 	// 추가함
 	private String nickname;
+	private String photo;
+	private String replyCount;
 
 	public Notice() {
 	}
 	
 	public Notice(long id, String title, String content, long hit, Date regDate, Date editDate, String writerId,
-			String nickname) {
+			String nickname, String photo, String replyCount) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
@@ -28,6 +30,25 @@ public class Notice {
 		this.editDate = editDate;
 		this.writerId = writerId;
 		this.nickname = nickname;
+		this.photo = photo;
+		this.replyCount = replyCount;
+	}
+	
+
+	public String getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(String replyCount) {
+		this.replyCount = replyCount;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getNickname() {

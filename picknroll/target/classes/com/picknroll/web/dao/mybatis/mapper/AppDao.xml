@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.picknroll.web.dao.AppDao">
+
+	<select id="getList" parameterType="java.util.Map" resultType="com.picknroll.web.entity.App">
+		select * from AppView
+		<if test="appCategoryId!=null and !appCategoryId.equals('')">
+			where appCategoryId = #{appCategoryId}
+		</if>
+	</select>
+	
+	<select id="getListByMemberId" parameterType="java.util.Map" resultType="com.picknroll.web.entity.App">
+		select a.id, a.title, a.url, a.icon, a.status, 
+			a.isLogin, a.description, a.target, a.appCategoryId, 
+			a.regDate, a.editDate, m.memberId, m.appId, c.name categoryName
+		from App a left outer join AppCategory c on a.appCategoryId = c.id left outer join (
+			select * from MemberApp where memberId = #{memberId}
+		) m on a.id = m.appId
+		<if test="appCategoryId!=null and !appCategoryId.equals('')">
+			where a.appCategoryId = #{appCategoryId}
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.picknroll.web.entity.App">
+		insert into App(title, url, icon, status, isLogin, description, target, appCategoryId)
+		values(#{title}, #{url}, #{icon}, #{status}, #{isLogin}, #{description}, #{target}, #{appCategoryId})
+	</insert>
+	
+	<select id="get" parameterType="java.util.Map" resultType="com.picknroll.web.entity.App">
+		select * from App
+		where id = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.picknroll.web.entity.App">
+		update App set
+			title = #{title},
+			url = #{url},
+			<if test="icon!=null and !icon.equals('')">
+				icon = #{icon},
+			</if>
+			status = #{status},
+			isLogin = #{isLogin},
+			target = #{target},
+			description = #{description},
+			appCategoryId = #{appCategoryId},
+			editDate = CURRENT_TIMESTAMP
+		where 
+			id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.util.Map">
+		delete from App
+		where id = #{id}
+	</delete>
+	
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from AppView
+		<if test="id!=null and !id.equals('')">
+			where id = #{id}
+		</if>
+	</select>
+	
+	<select id="getTotalCountByMemberId" parameterType="java.util.Map" resultType="Integer">
+		select count(*)
+		from App a left outer join AppCategory c on a.appCategoryId = c.id left outer join (
+			select * from MemberApp where memberId = #{memberId}
+		) m on a.id = m.appId
+		<if test="appCategoryId!=null and !appCategoryId.equals('')">
+			where a.appCategoryId = #{appCategoryId}
+		</if>
+	</select>
+	
+</mapper>

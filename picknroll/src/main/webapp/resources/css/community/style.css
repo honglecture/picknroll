@@ -2,7 +2,9 @@
 /*-----게시판 공통 css--------------------------------------------------------------*/
 /*----class--------------------------------------------------------------*/
 
-
+.notice-button-sm{
+	padding: 2px 10px;
+}
 /*-------------------- #search-section -----------------------*/
 #search-section{
 	
@@ -43,13 +45,28 @@
 		margin-top: 5px; 
 	}
 	
-	#article-list .article-info ul{
+	#article-list .article-info ul{ 
 		display: flex;
 		font-size: 0.7em; 
-	}
+	} 
 	
 	#article-list .article-info ul li{
 		padding-right: 5px;
 		
 	}
+	 
+	
+	
+#article-content{
+	
+} 
+
+	#article-content .article-info ul{  
+		margin-left: 20px; 
+	}
+
+#article-reply [contenteditable=true]:empty:before{
+  content: attr(placeholder);  
+  display: block; /* For Firefox */
+}
 

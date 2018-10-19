@@ -1,164 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-.black-button{
-	background: #5c5c5c;
-	color: #ffffff;
-	border-radius: 4px;
-	border: none;
-	cursor: pointer;
-}
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+	window.addEventListener("load",()=>{
+		
+		let appForm = document.querySelector("#app-form");
 
-.input-text{
-	padding: 6px 12px;
-    background: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-sizing: border-box;
-    resize: none;
-    font-size: 14px;
-}
+		//사진선택
+		let photoButton = appForm.querySelector(".photo-button");
+		let fileButton = appForm.querySelector("input[type='file']");
+		let photo = appForm.querySelector(".photo");
 
-.textarea{
-	height : 200px;
-}
+		fileButton.onchange = function(e){
 
-/*------------------------------------------------*/
+			let file = fileButton.files[0];
 
-.main-section {
-	border-top: 2px solid #e7eaec;
-	box-sizing: border-box;
-	background: #ffffff;
-	margin-bottom: 30px;
-	width: 90%;
-}
+			// 선택한 파일에 대한 조건 제어
 
-.main-section > h1 {
-	color: #686b6d;
-	font-size: 16px;
-	font-weight: bold;
-	padding: 10px;
-	border-bottom: 1px solid #e7eaec;
-}
+			console.log(file.type); //image/jpeg
 
+			if(file.type.indexOf("image/") < 0){
+				alert("이미지가 아닙니다.");
+				return;
+			}
 
-/*---.table--------------------------------*/
-   
-#service-form{
-	box-sizing: border-box; 
-	padding: 10px;
-}
-    
-   #service-form > table { 
-		width: 100%;
-		height : 100%;
-		table-layout: fixed;
-		border-spacing: 0px;
-	}   
-	  
-	#service-form > table th {    
-		width: 15%;      
-		height : 60px;     
-		text-align: right; 
-		font-size: 14px;      
-		color: #4e4e4e;    
-	}   
-	   
-   	#service-form > table td {  
-   		width: 85%;        
-   		padding-left: 50px;  
-   		text-align: left;
-	}
-	 
-	#service-form .row-radio ul{
-		display: flex;      
-	} 
-	
-	#service-form .row-radio ul li{   
-		width: 100px; 
-		text-align: left; 
-	}
-	   
-	#service-form .row-button td{    
-		text-align: center;  
-		margin : 30px 0px; 
-		padding-left: 1px;  
-	}
-	  
-	#service-form .row-button input{   
-   		width: 100px; 
-   		height: 30px;    
-   		margin : 30px;   
-	} 
-	 
-	#service-form .input-text{ 
-		width: 70%;
-	}
-	
+			if(file.size > 1024*1024*10){
+				alert("죄송합니다. 10MB를 초과할 수 없습니다.")
+				return;
+			}
 
-	
-	 
+			// 브라우저 메모리에 파일이 올라감
+			// html5 기능 로컬 이미지 불러들이기
+			let reader = new FileReader();
+			reader.onload = function(evt){ 
+				photo.src = evt.target.result; // 여기서 file 들어간다.
+			};
+			// 다 읽어 왔을 때.. background에서.. 
+			reader.readAsDataURL(file);	
+			console.log(file);
 
-</style>
+			};
 
-<section id="service-reg" class="main-section">
-	<h1>수정</h1>
-	<form id="service-form">
-		<table>
-			<tr> 
-				<th>제목</th>
-				<td><input type="text" id="title" class="input-text"></td>
-			</tr>
-			<tr>
-				<th>URL</th>
-				<td><input type="text" id="url" class="input-text"></td>
-			</tr>
-			<tr>
-				<th>아이콘</th>
-				<td></td>
-			</tr>
-			<tr class="row-radio">
-				<th>상태</th>
-				<td>
-					<ul>
-						<li><input type="radio" name="state" > 정상</li>
-						<li><input type="radio" name="state" > 중지</li>
-					</ul>
-				</td>
-			</tr>
-			<tr class="row-radio">
-				<th>로그인</th>
-				<td>
-					<ul>
-						<li><input type="radio" name="login" > 네</li>
-						<li><input type="radio" name="login" > 아니오</li>
-					</ul>
-				</td>
-			</tr>
-			<tr class="row-radio">
-				<th>링크</th>
-				<td>
-					<ul>
-						<li><input type="radio" name="target"> 새창</li>
-						<li><input type="radio" name="target"> 현재창</li>
-					</ul>
+			photoButton.onclick = function(e){
+			let event = new MouseEvent("click",{
+				"view" : window,
+				"bubbles" : true,
+				"cancelable" : true
+			});
+			fileButton.dispatchEvent(event);
+		}
+
+	});
+</script>
+<main>
+	<section>
+		<h1><a href="../list">앱관리 - 수정</a></h1>
+	</section>
+	<section id="app-form">
+		<form method="post" enctype="multipart/form-data">
+		<input type="hidden" name="originalIcon" value="${app.icon }">
+			<table>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" name="title" class="input-text" value="${app.title }"></td>
+				</tr>
+				<tr>
+					<th>URL</th>
+					<td><input type="text" name="url" class="input-text" value="${app.url }"></td>
+				</tr>
+				<tr>
+					<th>이미지</th>
+					<td>
+						<img class="photo" src="/resources/app/icon/${app.icon }" />
+					</td>
+				</tr>
+				<tr>
+					<th>아이콘</th>
+					<td>
 					
-					
-				</td>
-			</tr>
-			<tr>
-				<th>설명</th>
-				<td>
-					<textarea id="description" class="input-text textarea"></textarea>
-				</td>  
-			</tr> 
-			<tr class="row-button">
-				<td colspan="2">
-					<input type="button" id="reg-button" class="black-button" value="확인">
-					<input type="button" id="cancel-button" class="black-button" value="취소">
-				</td>
-			</tr>
-		</table>
-	</form>
-</section>
+						<input type="file" id="file-button" name="photo-file" hidden="true" value="파일선택" />
+						<input class="button photo-button" type="button" value="파일선택" />
+					</td>
+				</tr>
+				<tr>
+					<th>카테고리</th>
+					<td>
+						<select name="appCategoryId">
+						
+  						  <c:set var="cusName" value="${cusName}"/>
+						  <c:forEach items="${customerList}" var="dto">
+						    <select>
+						      <option value="${dto.cusname}" <c:if test="${dto.cusname eq cusName}">selected</c:if>>${dto.cusname}</option>
+						    </select>
+						  </c:forEach>
+						  	<c:set var="appCategoryId" value="${app.appCategoryId}"/>
+							  <c:forEach items="${appCategoryList }" var="appCategory">
+							  	  <option value="${appCategory.id}" <c:if test="${appCategory.id eq appCategoryId}">selected</c:if>>${appCategory.name }</option>
+							  </c:forEach>								
+						  </select>
+					</td>
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td>
+						<ul>
+							<li><input type="radio" name="status" value="1" <c:if test="${app.status}">checked="checked"</c:if>>정상</li>
+							<li><input type="radio" name="status" value="0" <c:if test="${not app.status}">checked="checked"</c:if>>중지</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>로그인</th>
+					<td>
+						<ul>
+							<li><input type="radio" name="isLogin" value="1" <c:if test="${app.isLogin}">checked="checked"</c:if>> 네</li>
+							<li><input type="radio" name="isLogin" value="0" <c:if test="${not app.isLogin}">checked="checked"</c:if>> 아니오</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>링크</th>
+					<td>
+						<ul>
+							<li><input type="radio" name="target" value="_blank" <c:if test="${app.target eq '_blank'}">checked="checked"</c:if>>새창</li>
+							<li><input type="radio" name="target" value="_self" <c:if test="${app.target eq '_self'}">checked="checked"</c:if>>현재창</li>
+						</ul> 
+					</td>
+				</tr>
+				<tr>
+					<th>설명</th>
+					<td>
+						<textarea name="description">${app.description }</textarea>
+					</td>  
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="수정">
+						<a href="list"><input type="button" value="취소"></a>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+</main>

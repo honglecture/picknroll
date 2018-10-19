@@ -41,9 +41,15 @@ public class MybatisNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public int delete(String id) {
+	public int getTotalCount(Map<String, String> params) {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		return noticeDao.delete(id);
+		return noticeDao.getTotalCount(params);
+	}
+
+	@Override
+	public int delete(Map<String, String> params) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.delete(params);
 	}
 
 }

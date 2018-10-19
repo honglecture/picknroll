@@ -1,6 +1,16 @@
-DROP VIEW NoticeMemberView;
+DROP VIEW NoticeView;
 
-create view NoticeMemberView as
-select n.id, n.title, n.content, n.hit, n.regDate, n.editDate, n.writerId, m.nickname 
-from Notice n left outer join Member m
+create view NoticeView as
+select n.id, n.title, n.content, n.hit, n.regDate, n.editDate, n.writerId,
+m.nickname, m.photo,
+(select count(*) from NoticeReply r where r.noticeId = n.id) 
+replyCount from Notice n left outer join Member m on n.writerId = m.id;
+
+DROP VIEW NoticeReplyView;
+
+create view NoticeReplyView as
+select n.id, n.content, n.regDate, n.writerId, n.noticeId, m.nickname from
+NoticeReply n left outer join Member m
 on n.writerId = m.id;
+
+교육 날씨 도구 사진 소셜 생산성 쇼핑 식음료 여행 예술 음악 뉴스

@@ -4,7 +4,6 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-  <!-- 인트로 -->
   <definition name="home.*.*" template="/WEB-INF/views/inc/layout.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
@@ -18,18 +17,30 @@
     <put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> 
   </definition>
-
-  <definition name="admin.*" template="/WEB-INF/views/admin/inc/layout.jsp">
+  
+  <definition name="admin.*.*" template="/WEB-INF/views/admin/inc/layout.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
-    <put-attribute name="nav" value="/WEB-INF/views/admin/inc/nav.jsp" />
     <put-attribute name="header" value="/WEB-INF/views/admin/inc/header.jsp" />
     <put-attribute name="main" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
+  </definition>
+  
+  <definition name="admin.*" template="/WEB-INF/views/admin/inc/layout.jsp">
+    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="header" value="/WEB-INF/views/admin/inc/header.jsp" />
+    <put-attribute name="main" value="/WEB-INF/views/admin/{1}.jsp" />
   </definition>
 
   <definition name="member.*" template="/WEB-INF/views/inc/layout.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
     <put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+  </definition>
+  
+  <definition name="market.*" template="/WEB-INF/views/inc/layout.jsp">
+    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+    <put-attribute name="main" value="/WEB-INF/views/market/{1}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition>
   
@@ -40,5 +51,4 @@
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> 
   </definition>
 
-  
 </tiles-definitions>

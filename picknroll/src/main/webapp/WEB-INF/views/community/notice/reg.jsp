@@ -2,60 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<main>
-	<section>
-		<h1>공지사항 등록</h1>
-	</section>
-	
-	<section id="article-form-section">
-		<h1>공지사항 작성폼</h1>
+<link href="/resources/css/community/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/community/notice/reg.js"></script>
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+<main class="main-container">
+	<section class="main-title">
+		<h1><a href="list">> 공지사항 등록</a></h1>
+	</section> 
+	<section class="section-margin" id="article-content">
+		<h1 class="hidden">공지사항 등록</h1>
 		<form method="post">
-			<table>
-				<tr>
-					<th>제목</th>
-					<td><input type="text" name="title" id="title" ></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea name="content" id="content"></textarea></td>
-				</tr>
-			</table>
-			<input type="submit" class="write-button" value="글쓰기">
-			<input type="button" class="cancel-button" value="취소">
+			<div class="section-margin">
+				<input type="text" class="text-input" name="title"> 
+			</div>
+			<div class="section-margin noto-sans font-md"> 
+				<textarea name="content" id="content"></textarea>
+			</div>
+			<input type="submit" class="section-margin reg-button button" value="등록">
 		</form>
+		<input type="button" class="section-margin list-button button" value="목록">	
 	</section>
 </main>
-<script>
-
-var noticeParams = {
-		p : blankToOne("${params.p}")
-	   ,f : nullToValue("${params.f}", "title")
-	   ,q : nullToValue("${params.q}", "")
-	   ,w : nullToValue("${params.w}", "") 
-	   ,s : nullToValue("${params.s}", "regDate")
-}
-
-window.addEventListener("load", function(){
-
-	var articleFormSection = document.querySelector("#article-form-section");
-
-	var title = articleFormSection.querySelector("input[name='title']");
-	var content = articleFormSection.querySelector("input[name='content']");
-
-	var writeButton = articleFormSection.querySelector(".write-button");
-	var cancelButton = articleFormSection.querySelector(".cancel-button");
-
-	writeButton.onclick = function(e){
-		if(title.value == "" || content.value == ""){
-			alert("내용을 입력해주세요");
-			e.preventDefault();
-		}
-	}
-
-	cancelButton.onclick = function(){
-		var qs = createQuerystring(noticeParams);
-		location.href = "list?"+qs;
-	}
-	
-});
-</script>

@@ -5,24 +5,27 @@ import java.util.Date;
 public class NoticeReply {
 
 	private long id;
-	private String title;
 	private String content;
 	private Date regDate;
 	private Date editDate;
 	private String writerId;
 	private long noticeId;
 
-	public NoticeReply() {}
+	// 닉네임
+	private String nickname;
 
-	public NoticeReply(long id, String title, String content, Date regDate, Date editDate, String writerId,
-			long noticeId) {
+	public NoticeReply() {
+	}
+
+	public NoticeReply(long id, String content, Date regDate, Date editDate, String writerId, long noticeId,
+			String nickname) {
 		this.id = id;
-		this.title = title;
 		this.content = content;
 		this.regDate = regDate;
 		this.editDate = editDate;
 		this.writerId = writerId;
 		this.noticeId = noticeId;
+		this.nickname = nickname;
 	}
 
 	public long getId() {
@@ -31,14 +34,6 @@ public class NoticeReply {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getContent() {
@@ -81,10 +76,12 @@ public class NoticeReply {
 		this.noticeId = noticeId;
 	}
 
-	@Override
-	public String toString() {
-		return "NoticeReply [id=" + id + ", title=" + title + ", content=" + content + ", regDate=" + regDate
-				+ ", editDate=" + editDate + ", writerId=" + writerId + ", noticeId=" + noticeId + "]";
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 }

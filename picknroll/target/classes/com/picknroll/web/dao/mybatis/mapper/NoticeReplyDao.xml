@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.picknroll.web.dao.NoticeReplyDao">
+
+	<select id="getList" parameterType="java.util.Map" resultType="com.picknroll.web.entity.NoticeReply">
+		select * from NoticeReplyView 
+		where noticeId = #{id}
+		order by regDate
+	</select>
+	
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from NoticeReplyView 
+		where noticeId = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.picknroll.web.entity.NoticeReply">
+		insert into NoticeReply(content, writerId, noticeId)
+		values(#{content},#{writerId},#{noticeId})
+	</insert>
+	
+	<delete id="delete" parameterType="java.util.Map">
+		delete from NoticeReply
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteAll" parameterType="java.util.Map">
+		delete from NoticeReply
+		where noticeId = #{id}
+	</delete>
+	
+
+</mapper>

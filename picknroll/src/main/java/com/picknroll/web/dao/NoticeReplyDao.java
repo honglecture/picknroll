@@ -1,16 +1,17 @@
 package com.picknroll.web.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.picknroll.web.entity.NoticeReply;
-import com.picknroll.web.entity.Role;
 
 public interface NoticeReplyDao {
 	
 	int insert(NoticeReply noticeReply);
 	int update(NoticeReply noticeReply);
-	int delete(int id);
-	Role get(int id);
-	List<NoticeReply> getList();
+	List<NoticeReply> getList(Map<String, String> params);
+	int getTotalCount(Map<String, String> params);
+	int delete(Map<String, String> params);
+	int deleteAll(Map<String, String> params);
 
 }

@@ -2,6 +2,8 @@ package com.picknroll.web.dao.mybatis;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.picknroll.web.dao.AppCategoryDao;
@@ -9,6 +11,9 @@ import com.picknroll.web.entity.AppCategory;
 
 @Repository
 public class MybatisAppCategoryDao implements AppCategoryDao {
+	
+	@Autowired
+	private SqlSession sqlSession;
 
 	@Override
 	public int insert(AppCategory appCategory) {
@@ -32,7 +37,8 @@ public class MybatisAppCategoryDao implements AppCategoryDao {
 
 	@Override
 	public List<AppCategory> getList() {
-		return null;
+		AppCategoryDao appCategoryDao = sqlSession.getMapper(AppCategoryDao.class);
+		return appCategoryDao.getList();
 	}
 
 }

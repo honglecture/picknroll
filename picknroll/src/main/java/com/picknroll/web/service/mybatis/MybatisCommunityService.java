@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.picknroll.web.dao.NoticeDao;
+import com.picknroll.web.dao.NoticeReplyDao;
 import com.picknroll.web.entity.Notice;
+import com.picknroll.web.entity.NoticeReply;
 import com.picknroll.web.service.CommunityService;
 
 @Service
@@ -16,6 +18,9 @@ public class MybatisCommunityService implements CommunityService {
 
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	@Autowired
+	private NoticeReplyDao noticeReplyDao;
 
 	@Override
 	public List<Notice> getNoticeList(Map<String, String> param) {
@@ -40,20 +45,47 @@ public class MybatisCommunityService implements CommunityService {
 	}
 
 	@Override
-	public int deleteNotice(String id) {
-		return noticeDao.delete(id);
-	}
-
-	@Override
-	public Map<String, String> generateNoticeParam(String field, String query, String writerId, String sortField,
+	public Map<String, String> generateNoticeParam(String field, String query, String sortField,
 			int page) {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("f", field);
 		param.put("q", query);
-		param.put("w", writerId);
 		param.put("s", sortField);
 		param.put("p", String.valueOf(page));
 		return param;
 	}
 
+	@Override
+	public int getNoticeTotalCount(Map<String, String> params) {
+		return noticeDao.getTotalCount(params);
+	}
+
+	@Override
+	public List<NoticeReply> getNoticeReply(Map<String, String> params) {
+		return noticeReplyDao.getList(params);
+	}
+
+	@Override
+	public int getNoticeReplyTotalCount(Map<String, String> params) {
+		return noticeReplyDao.getTotalCount(params);
+	}
+
+	@Override
+	public int insertNoticeReply(NoticeReply noticeReply) {
+		return noticeReplyDao.insert(noticeReply);
+	}
+
+	@Override
+	public int deleteNoticeReply(Map<String, String> params) {
+		return noticeReplyDao.delete(params);
+
+	}
+
+	@Override
+	public int deleteNotice(Map<String, String> params) {
+		noticeReplyDao.deleteAll(params);
+		return noticeDao.delete(params);
+	}
+
+	
 }

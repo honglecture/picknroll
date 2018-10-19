@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.picknroll.web.entity.Notice;
+import com.picknroll.web.entity.NoticeReply;
+import com.picknroll.web.util.Pagination;
 
 public interface CommunityService {
 
@@ -15,8 +17,18 @@ public interface CommunityService {
 
 	int updateNotice(Notice notice);
 
-	int deleteNotice(String id);
+	Map<String, String> generateNoticeParam(String field, String query, String sortField, int page);
+	
+	int getNoticeTotalCount(Map<String, String> params);
 
-	Map<String, String> generateNoticeParam(String field, String query, String writerId, String sortField, int page);
+	List<NoticeReply> getNoticeReply(Map<String, String> params);
+
+	int getNoticeReplyTotalCount(Map<String, String> params);
+
+	int insertNoticeReply(NoticeReply noticeReply);
+
+	int deleteNoticeReply(Map<String, String> params);
+
+	int deleteNotice(Map<String, String> params);
 
 }

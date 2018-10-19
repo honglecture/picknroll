@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /*--------------- 공통 css ---------------*/
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 /*--------------- 리셋   ------------------*/
 body {
@@ -10,6 +12,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	margin: 0px;
+}
+
+textarea{
+	resize: none;
 }
 
 p {
@@ -30,8 +36,6 @@ a{
 	text-decoration: none;
 } 
  
-
-
 *{
 	box-sizing: border-box;
 }
@@ -46,9 +50,81 @@ body {
 	font-size: 0.8em;
 }
 
+.text-lg{
+	font-size: 1.2em;
+}
+
 /*------------------공통 class---------------------*/
 .hidden{
 	display: none;
+}
+
+.cutive-mono{
+	font-family: 'Cutive Mono', monospace; 
+}
+
+.noto-sans{
+	font-family: ‘Noto Sans KR’ ; 
+}
+
+.jeju-gothic{
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
+.font-sm{
+	font-size: 10px;
+}
+
+.font-md{ 
+	font-size: 13px;
+}
+ 
+
+.pagination{
+	text-align: center;
+	justify-content: center;
+    align-items: center; 
+}
+
+.pagination-item{
+	/* width: 100%; */
+	box-shadow: inset 0px 0px 0px 0px #ffffff;
+    background-blend-mode: lighten;
+    background-color: rgba(0,0,0,0);
+    border-radius: 0px;
+    padding: 5px 10px;
+    margin: 8px 1px;  
+    border-radius: 0px;
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+    box-sizing: border-box;
+    margin: 1;
+    cursor: pointer; 
+    text-align: center;
+}
+
+.pagination-item:hover{
+    background-color: #000;
+    color: #fff;
+}
+
+.pagination-item-disabled{
+    background-color: #000;
+    color: #fff;
+}
+
+.flex{
+	display: flex;
+}
+
+.flex-center{
+	justify-content: center;
+    align-items: center;
+}
+
+.flex-vertical-center{
+	align-items: center;
 }
 
 .main-container{  
@@ -56,15 +132,40 @@ body {
 	margin-left : auto;
 	margin-right: auto;
 	padding : 0% 5%;
+}
+
+.section-margin{
+	margin-top: 10px;
 }   
 
 .main-title{ 
 	margin: 10px 0px; 
 }
 
+.photo{
+	width:96px;
+	height:96px;
+}
+
+
+
 /*----------input-box------------*/
 .text-input{
     width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;  
+    border: 1px solid #a9a9a9;
+}
+
+.div-box-black{
+	width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;  
+    border: 1px solid #000000;
+}
+
+.div-box-gray{
+	width: 100%;
     padding: 12px 20px;
     margin: 8px 0;  
     border: 1px solid #a9a9a9;
@@ -93,8 +194,12 @@ body {
     color: #000;
     box-sizing: border-box;
     margin: 1;
-    cursor: pointer;
+    cursor: pointer; 
     text-align: center;
+} 
+
+.button-inline{
+	margin:0px;
 }
 
 .select{
