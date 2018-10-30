@@ -32,6 +32,7 @@ public class SecurityContextConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/member/profile").authenticated()  // 로그인이 필요해!!
 			.antMatchers("/member/pwd-edit").authenticated()  // 로그인이 필요해!!
 			.antMatchers("/member/detail-edit").authenticated()  // 로그인이 필요해!!
+			.antMatchers("/market/**").authenticated()  // 로그인이 필요해!!
 			.anyRequest().permitAll() // 나머지는 권한 필요없어
 		.and()
 		.formLogin() // 폼을 이용해서 로그인

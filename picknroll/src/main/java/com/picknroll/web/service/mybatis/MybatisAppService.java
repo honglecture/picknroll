@@ -126,6 +126,9 @@ public class MybatisAppService implements AppService {
 
 	@Override
 	public int deleteApp(long id) {
+		MemberApp memberApp = new MemberApp();
+		memberApp.setAppId(id);
+		memberAppDao.deleteAll(memberApp);
 		return appDao.delete(ParameterUtil.mapping("id", String.valueOf(id)));
 	}
 

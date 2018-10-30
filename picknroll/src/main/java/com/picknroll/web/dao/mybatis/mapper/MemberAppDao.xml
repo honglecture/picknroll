@@ -12,8 +12,14 @@
 	<delete id="delete" parameterType="com.picknroll.web.entity.MemberApp">
 		delete from MemberApp
 		where 
+			appId = #{appId} and
+			memberId=  #{memberId}
+	</delete>
+	
+	<delete id="deleteAll" parameterType="com.picknroll.web.entity.MemberApp">
+		delete from MemberApp
+		where 
 			appId = #{appId} 
-		and memberId = #{memberId}
 	</delete>
 	
 </mapper>

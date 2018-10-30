@@ -26,15 +26,14 @@
 		<ul class="app-list-ul">
 <!-- 			<li class="app-li div-box-black" data-id="3">
 				<article class="app-article">
-					reletive
 					<div class="app-info flex flex-vertical-center">
 						<img src="/resources/images/home.png" class="photo" />
 						<ul> 
 							<li class="text-lg">TodoList</li>
 							<li class="text-sm">교육</li>
 							<li class="text-sm">2018.08.13</li>
-						</ul> 
-						<input type="checkbox" class="use-check" />
+						</ul>
+						<input type="button" class="use-check" value = "pick" />
 					</div>
 					<p class="noto-sans text-sm">
 						나는설명충입니다.~~~~~~~~
@@ -44,7 +43,6 @@
 					</p>
 				</article>
 			</li> -->
-			
 		</ul>
 	</section>
 	

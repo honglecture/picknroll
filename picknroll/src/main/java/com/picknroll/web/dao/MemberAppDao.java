@@ -11,5 +11,6 @@ public interface MemberAppDao {
 	int delete(MemberApp memberApp);
 	MemberApp get(int id);
 	List<MemberApp> getList();
+	int deleteAll(MemberApp memberApp);
 
 }

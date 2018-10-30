@@ -3,15 +3,21 @@
 /*-----------class-----------------------------*/
 
 .app-image{
-	width : 100px;  
-	height : 100px;
+	width : 90px;  
+	height : 90px;
 	border-radius: 30px; 
 	background-color: black;  
-	display: inline-block;       
+	display: inline-block;
 }
 
 .app-title{
 	display: block;
+}
+
+.app-item{
+	width : 100px;  
+	height : 100px;
+	text-align: center;
 }
   
 /*--main--------------------------------------*/ 
@@ -29,5 +35,39 @@
 	#menu-list > ul > li{
 		display: inline-block;
 		text-align: center;
-		margin : 20px;
 	}
+	
+	
+/*------미디어쿼리-----------------------------------*/
+@media screen and (max-width:812px) {
+  .app-image{
+ 	width : 70px;  
+	height : 70px;
+	border-radius: 15px; 
+	background-color: black;  
+	display: inline-block;    
+  }
+  .app-item{
+  	width : 80px;  
+	height : 80px;
+	margin : 15px;
+	text-align: center;
+  }
+}
+
+ @media screen and (max-width:400px) {
+  .app-image{
+ 	width : 50px;  
+	height : 50px;
+	border-radius: 15px;  
+	background-color: black;  
+	display: inline-block;    
+  }
+  .app-item{
+  	width : 60px;  
+	height : 60px;
+	text-align: center;
+	margin : 10px;
+	font-size: 0.8em;
+  }
+}

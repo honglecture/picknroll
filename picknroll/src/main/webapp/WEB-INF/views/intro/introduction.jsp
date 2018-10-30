@@ -6,7 +6,7 @@
 		<h1>> PicknRoll 소개</h1>	
 	</section>
 	<section id="intro">
-		<img class="intro-photo" src="/resources/images/intro.gif" />
+		<img class="intro-photo" src="/resources/images/intro.png" />
 		<p>
 			안녕하세요. PicknRoll 개발자 고슴도치가시입니다.
 			PicknRoll은 제가 개발한 서비스를 올리는 사이트입니다.

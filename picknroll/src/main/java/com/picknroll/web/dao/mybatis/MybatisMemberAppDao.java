@@ -43,6 +43,12 @@ public class MybatisMemberAppDao implements MemberAppDao {
 		return null;
 	}
 
+	@Override
+	public int deleteAll(MemberApp memberApp) {
+		MemberAppDao memberAppDao = sqlSession.getMapper(MemberAppDao.class);
+		return memberAppDao.deleteAll(memberApp);
+	}
+
 
 
 }

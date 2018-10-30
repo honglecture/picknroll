@@ -52,7 +52,7 @@ public class PicnrollAuthenticationSuccessHandler implements AuthenticationSucce
          //받은 roleName에 따라 분기해야 한다.
          switch (roleName) {
          case "ROLE_ADMIN" :
-              redirectStrategy.sendRedirect(request, response, "/admin/index");  
+              redirectStrategy.sendRedirect(request, response, "/index");  
               break;
          default : //디폴트는 CLIENT
               redirectStrategy.sendRedirect(request, response, "/index");

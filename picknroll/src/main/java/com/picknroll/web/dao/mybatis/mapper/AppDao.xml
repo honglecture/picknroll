@@ -21,6 +21,7 @@
 		<if test="appCategoryId!=null and !appCategoryId.equals('')">
 			where a.appCategoryId = #{appCategoryId}
 		</if>
+		order by a.id desc
 	</select>
 	
 	<insert id="insert" parameterType="com.picknroll.web.entity.App">
